@@ -16,13 +16,13 @@
         <h1 class="header center teal-text text-lighten-2"><a href="/">NYC Water Data consumption</a></h1>
         <div class="row center">
           <h5>
-            <form id="new-user" method="GET" action="/users/new">
+            <form id="new-user" method="GET" action="/">
               <button type="submit">Sign Up</button>
             </form>
           </h5>
 
           <h5>
-              <form id="login-user" method="GET" action="/users/login">
+              <form id="login-user" method="GET" action="/">
                 <button type="submit">Log In</button>
               </form>
           </h5>
@@ -37,28 +37,57 @@
   <div class="container">
     <div class="section">
 
-      <form id="signup-login-form" method="post" action="/users">
+      <form id="signup-form" method="post" action="/">
+        <h4>Sign Up</h4>
           <label class="input-group col-1-3">
-            <input id="user-username" type="text" name="user[username]" value="<%= @user.try(:username) %>">
+            <input id="user-username" type="text" name="user[username]">
             <span class="input-group-label"><h6>Username</h6></span>
           </label>
 
           <label class="input-group col-1-3">
-            <input id="user-age" type="text" name="user[age]" value="<%= @user.try(:age) %>">
+            <input id="user-password" type="text" name="user[password]">
             <span class="input-group-label"><h6>Password</h6></span>
           </label>
           <br>
 
           <div class="row center">
-            <button id="signup-login-submit" type="submit">Submit</button>
+            <button id="signup-submit" type="submit">Sign Up</button>
           </div>
       </form>
 
+      <form id="login-form" method="post" action="/login">
+        <h4>Log In</h4>
+          <label class="input-group col-1-3">
+            <input id="user-username" type="text" name="user[username]">
+            <span class="input-group-label"><h6>Username</h6></span>
+          </label>
+
+          <label class="input-group col-1-3">
+            <input id="user-password" type="text" name="user[password]" >
+            <span class="input-group-label"><h6>Password</h6></span>
+          </label>
+          <br>
+
+          <div class="row center">
+            <button id="login-submit" type="submit">Log In</button>
+          </div>
+      </form>
+
+      <div id="readme-section" class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Welcome!</h4>
+          <p class="left-align light">With this application, you can display data on NYC population and
+            water data consumption from 1979 to 2016.</p>
+        </div>
+      </div>
 
       <div id="user-data" class="row">
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
+
           <h4>Welcome #, here's your data</h4>
+
           <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
         </div>
       </div>

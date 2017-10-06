@@ -3,23 +3,28 @@ $(document).ready(function() {
   // This guarantees that any elements we bind to will exist on the page
   // when we try to bind to them
 
-  $("#signup-login-form").hide()
-  $("#user-data").hide()
+  $("#signup-form").hide();
+  $("#login-form").hide();
+  $("#user-data").hide();
 
-  $("#new-user").on("click", function(event) {
+  $("#new-user").on("submit", function(event) {
     event.preventDefault();
-    $("#signup-login-form").show();
+    $("#readme-section").hide();
+    $("#login-form").hide();
+    $("#signup-form").show();
     });
 
-  $("#login-user").on("click", function(event) {
+  $("#login-user").on("submit", function(event) {
     event.preventDefault();
-    $("#signup-login-form").show();
+    $("#readme-section").hide();
+    $("#signup-form").hide();
+    $("#login-form").show();
     });
 
 
-  $("#signup-login-form").on("submit", function(event) {
+  $("#signup-form").on("submit", function(event) {
     event.preventDefault();
-
+      $("#readme-section").hide();
       $form = $(event.target);
       var url = $form.attr("action");
       var method = $form.attr("method");
@@ -32,8 +37,29 @@ $(document).ready(function() {
       })
 
       .done(function(response){
+        console.log(response);
+        $("#signup-form").hide();
+      })
 
-        $("#signup-login-form").hide();
+    });
+
+  $("#login-form").on("submit", function(event) {
+    event.preventDefault();
+      $("#readme-section").hide();
+      $form = $(event.target);
+      var url = $form.attr("action");
+      var method = $form.attr("method");
+      var data = $form.serialize();
+
+      $.ajax({
+        method: method,
+        url: url,
+        data: data
+      })
+
+      .done(function(response){
+        console.log(response);
+        $("#login-form").hide();
       })
 
     });

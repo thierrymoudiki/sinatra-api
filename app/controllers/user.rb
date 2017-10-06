@@ -2,18 +2,20 @@ get '/' do
   erb :index
 end
 
-get '/users/new' do
-  redirect '/'
+# This route is for registration
+post '/' do
+  @user = User.new(params[:user])
+  if @user.save
+    erb :index
+  else
+    erb :index
+  end
 end
 
-get '/users/login' do
-  redirect '/'
-end
-
-post '/users' do
-
-end
-
-post '/users/login' do
-
+# This route is for logging in
+post '/login' do
+  @user = User.find_by(params[:user])
+  session[:id] = @user.id
+  session.inspect
+  erb :index
 end
