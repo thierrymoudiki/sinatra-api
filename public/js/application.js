@@ -32,7 +32,7 @@ $(document).ready(function() {
             },
             yAxis: {
                 title: {
-                    text: 'Constion'
+                    text: 'Water Consumption'
                 }
             },
             legend: {
