@@ -34,6 +34,23 @@ def filter(array, criteria)
   return res
 end
 
+def format_population_data(array)
+  res = [{name:'population', data: []}]
+    array.each do |elm|
+      res[0][:data] << elm["new_york_city_population"].to_i
+    end
+  return res.to_json
+end
+
+def format_consumption_data(array)
+  res = [{name:'consumption', data: []}]
+    array.each do |elm|
+      res[0][:data] << elm["nyc_consumption_million_gallons_per_day"].to_i
+    end
+  return res.to_json
+end
+
+
 
 puts "\n"
 puts "----- NYC water data consumption -----"

@@ -3,63 +3,132 @@ $(document).ready(function() {
   // This guarantees that any elements we bind to will exist on the page
   // when we try to bind to them
 
-  $("#signup-form").hide();
-  $("#login-form").hide();
-  $("#user-data").hide();
-
-  $("#new-user").on("submit", function(event) {
+  $("#outer").on("submit", "#get-cons-data-form", function(event) {
     event.preventDefault();
-    $("#readme-section").hide();
-    $("#login-form").hide();
-    $("#signup-form").show();
-    });
 
-  $("#login-user").on("submit", function(event) {
-    event.preventDefault();
-    $("#readme-section").hide();
-    $("#signup-form").hide();
-    $("#login-form").show();
-    });
+      var $obj = $(this);
+      var url = $obj.attr("action");
+      var method = $obj.attr("method");
 
-
-  $("#signup-form").on("submit", function(event) {
-    event.preventDefault();
-      $("#readme-section").hide();
-      $form = $(event.target);
-      var url = $form.attr("action");
-      var method = $form.attr("method");
-      var data = $form.serialize();
+      // console.log($obj);
+      // console.log(url);
+      // console.log(method);
 
       $.ajax({
         method: method,
-        url: url,
-        data: data
+        url: url
       })
 
       .done(function(response){
         console.log(response);
-        $("#signup-form").hide();
+        console.log(JSON.parse(response));
+        //$obj.next().next().html(response);
+        Highcharts.chart('get-data', {
+            title: {
+                text: 'NYC Water Consumption (million_gallons/day), 1979-2016'
+            },
+            subtitle: {
+                text: 'Source: https://opendata.cityofnewyork.us/'
+            },
+            yAxis: {
+                title: {
+                    text: 'Constion'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 1979
+                }
+            },
+            series: JSON.parse(response),
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+});
       })
 
     });
 
-  $("#login-form").on("submit", function(event) {
+  $("#outer").on("submit", "#get-pop-data-form", function(event) {
     event.preventDefault();
-      $("#readme-section").hide();
-      $form = $(event.target);
-      var url = $form.attr("action");
-      var method = $form.attr("method");
-      var data = $form.serialize();
+
+      var $obj = $(this);
+      var url = $obj.attr("action");
+      var method = $obj.attr("method");
+
+      // console.log($obj);
+      // console.log(url);
+      // console.log(method);
 
       $.ajax({
         method: method,
-        url: url,
-        data: data
+        url: url
       })
 
       .done(function(response){
         console.log(response);
-        $("#login-form").hide();
+        console.log(JSON.parse(response));
+        //$obj.next().next().html(response);
+        Highcharts.chart('get-data', {
+            title: {
+                text: 'NYC Population, 1979-2016'
+            },
+            subtitle: {
+                text: 'Source: https://opendata.cityofnewyork.us/'
+            },
+            yAxis: {
+                title: {
+                    text: 'Population'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 1979
+                }
+            },
+            series: JSON.parse(response),
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+});
       })
 
     });

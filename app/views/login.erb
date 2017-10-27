@@ -1,0 +1,25 @@
+<form id="login-form" action="/login" method="post">
+  <h2>Log In</h2>
+     <table>
+      <tr>
+       <td><b>Username: </b> &nbsp; </td> <td><input type="text" name="user[username]"></td>
+      </tr>
+      <tr>
+       <td><b>Password: </b> &nbsp; </td> <td><input type="password" name="user[password]"></td>
+      </tr>
+     </table>
+     <br>
+     <div class="buttonHolder">
+              <input type="submit" value="Sign In!">
+  </div>
+</form>
+
+<h5><a href="/">Back to login/signup page</a></h5>
+
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
