@@ -1,0 +1,20 @@
+<h2><%= @user.username %>'s home page</h2>
+
+<div style="width: 100%; overflow: hidden;">
+    <div style="width: 600px; float: left;">
+      <form id="get-cons-data-form" action="/data/consumption" method="post">
+        <input type="submit" value="Get consumption Data">
+      </form>
+     </div>
+    <div style="margin-left: 620px;">
+      <form id="get-pop-data-form" action="/data/population" method="post">
+        <input type="submit" value="Get population Data">
+      </form>
+    </div>
+</div>
+
+<br>
+
+<div id="get-data">
+
+</div>
